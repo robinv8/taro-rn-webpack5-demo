@@ -16,8 +16,11 @@ export default class Index extends Component<PropsWithChildren> {
     return (
       <View className="index">
         <Text>Hello world!</Text>
-        <AtButton type="primary" size="normal" loading>
-          2121
+        <AtButton type="primary">
+          按钮文案
+        </AtButton>
+        <AtButton type="secondary">
+          按钮文案
         </AtButton>
       </View>
     );

@@ -19,6 +19,9 @@ const config = {
     }
   },
   framework: 'react',
+  alias: {
+    '~taro-ui/dist': '~taro-ui/rn'
+  },
   compiler: {
     type: 'webpack5',
     prebundle: {

@@ -90,6 +90,9 @@
     "react-native-webview": "~11.23.0",
     "taro-ui": "^3.1.1"
   },
+  "resolutions": {
+    "sass": "1.62.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",

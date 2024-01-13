@@ -31,7 +31,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "podInstall": "pod-install",
-    "upgradePeerdeps": "install-peerdeps @tarojs/taro-rn@3.6.15 -o -Y && install-peerdeps @tarojs/components-rn@3.6.15 -o -Y && install-peerdeps @tarojs/router-rn@3.6.15 -o -Y && pod-install"
+    "upgradePeerdeps": "install-peerdeps @tarojs/taro-rn@3.6.15 -o -Y && install-peerdeps @tarojs/components-rn@3.6.15 -o -Y && install-peerdeps @tarojs/router-rn@3.6.15 -o -Y && pod-install",
+    "postinstall": "patch-package"
   },
   "browserslist": [
     "last 3 versions",
@@ -113,6 +114,7 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "install-peerdeps": "^3.0.3",
+    "patch-package": "^8.0.0",
     "pod-install": "^0.1.23",
     "postcss": "^8.4.18",
     "react-refresh": "^0.11.0",

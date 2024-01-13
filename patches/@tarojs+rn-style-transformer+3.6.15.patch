@@ -1,0 +1,46 @@
+diff --git a/node_modules/@tarojs/rn-style-transformer/dist/transforms/sass.js b/node_modules/@tarojs/rn-style-transformer/dist/transforms/sass.js
+index 78bc6f2..88b8f4d 100644
+--- a/node_modules/@tarojs/rn-style-transformer/dist/transforms/sass.js
++++ b/node_modules/@tarojs/rn-style-transformer/dist/transforms/sass.js
+@@ -130,6 +130,7 @@ function renderToCSS(src, filename, options, transformOptions) {
+ function transform(src, filename, config, transformOptions) {
+     const additionalData = combineResource(src, filename, config);
+     let data = (0, utils_1.insertBefore)(src, additionalData);
++    data = (0, utils_1.sortStyle)(data);
+     if (!data) {
+         data = `\n${data}`; // fix empty file error. reference https://github.com/sass/node-sass/blob/91c40a0bf0a3923ab9f91b82dcd479c25486235a/lib/index.js#L430
+     }
+diff --git a/node_modules/@tarojs/rn-style-transformer/dist/utils/index.js b/node_modules/@tarojs/rn-style-transformer/dist/utils/index.js
+index 43c9e9e..460f089 100644
+--- a/node_modules/@tarojs/rn-style-transformer/dist/utils/index.js
++++ b/node_modules/@tarojs/rn-style-transformer/dist/utils/index.js
+@@ -45,6 +45,29 @@ function insertBefore(source, additional) {
+     return additional + ';\n' + source;
+ }
+ exports.insertBefore = insertBefore;
++function sortStyle (source) {
++    if (!source) {
++      return ''
++    }
++  
++    if (source.indexOf('@use') === -1) {
++      return source
++    }
++  
++    // @use highest priority
++    const useReg = /@use\s+['"](.*)['"];/g
++    const useList = []
++    let match = null
++    while ((match = useReg.exec(source))) {
++      useList.push(match[0])
++      source = source.replace(match[0], '')
++    }
++  
++    // css last
++    const css = source.trim()
++    return [...useList, css].join('\n')
++}
++exports.sortStyle = sortStyle;
+ function insertAfter(source, additional) {
+     if (!source && !additional) {
+         return '';
